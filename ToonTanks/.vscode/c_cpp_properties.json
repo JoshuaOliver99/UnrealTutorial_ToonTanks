@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "ToonTanksEditor Editor Win64 Development (ToonTanks)",
+            "compilerPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64",
+            "compileCommands": "C:\\Users\\Joshua Simpson\\Documents\\GitHub\\ToonTanks\\ToonTanks\\.vscode\\compileCommands_ToonTanks.json"
+        },
+        {
+            "name": "Win32",
+            "compilerPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64",
+            "compileCommands": "C:\\Users\\Joshua Simpson\\Documents\\GitHub\\ToonTanks\\ToonTanks\\.vscode\\compileCommands_Default.json"
+        }
+    ],
+    "version": 4
+}
