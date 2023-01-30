@@ -14,6 +14,12 @@ class TOONTANKS_API ABasePawn : public APawn
 public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
+	
+protected:
+	
+	void RotateTurret(FVector LookAtTarget);
+
+	void Fire();
 
 private:
 	// Using forward decloration (we don't use the header in the header file, instead use a class decloration pointer*)

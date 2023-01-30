@@ -27,6 +27,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
+	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ATank::Fire);
 }
 
 // Called when the game starts of when spawned
@@ -50,13 +51,7 @@ void ATank::Tick(float DeltaTime)
 			false,
 			HitResult);
 
-		DrawDebugSphere(
-			GetWorld(),
-			HitResult.Location,
-			10.0f,
-			12,
-			FColor::Red,
-			false);
+		RotateTurret(HitResult.ImpactPoint);
 	}
 }
 
