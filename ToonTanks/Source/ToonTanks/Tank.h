@@ -23,6 +23,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void HandleDestruction() override;
+
+	APlayerController* GetTankPlayerController() const { return TankPlayerController;}
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -38,7 +42,7 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float TurnRate = 150.f;
 	
-	APlayerController* PlayerControllerRef;
+	APlayerController* TankPlayerController;
 	
 	void Move(float Value);
 	void Turn(float Value);
