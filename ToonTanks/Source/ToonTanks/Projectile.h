@@ -6,6 +6,9 @@
 #include "GameFramework/Actor.h"
 #include "Projectile.generated.h"
 
+// Note: alternate way of forward declaration 
+class USoundBase;
+
 UCLASS()
 class TOONTANKS_API AProjectile : public AActor
 {
@@ -14,14 +17,13 @@ class TOONTANKS_API AProjectile : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AProjectile();
-
+	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 private:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -30,9 +32,25 @@ private:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UProjectileMovementComponent* ProjectileMovement;
 
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	class UParticleSystemComponent* ProjectileParticleTrail;
+	
+	
 	// Function for delegate
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
 	float Damage = 50.f;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	class UParticleSystem* HitParticles;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	USoundBase* LaunchSound;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	USoundBase* HitSound;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	TSubclassOf<class UCameraShakeBase> HitCameraShakeClass;
 };

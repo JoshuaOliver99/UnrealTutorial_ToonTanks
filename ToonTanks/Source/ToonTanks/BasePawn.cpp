@@ -28,8 +28,8 @@ ABasePawn::ABasePawn()
 
 void ABasePawn::RotateTurret(FVector LookAtTarget)
 {
-	FVector ToTarget = LookAtTarget - TurretMesh->GetComponentLocation();
-	FRotator LookAtRotation = FRotator(0.0f, ToTarget.Rotation().Yaw, 0.0f);
+	const FVector ToTarget = LookAtTarget - TurretMesh->GetComponentLocation();
+	const FRotator LookAtRotation = FRotator(0.0f, ToTarget.Rotation().Yaw, 0.0f);
 
 	TurretMesh->SetWorldRotation(
 		FMath::RInterpTo(
@@ -41,7 +41,7 @@ void ABasePawn::RotateTurret(FVector LookAtTarget)
 
 void ABasePawn::Fire()
 {
-	auto Projectile = GetWorld()->SpawnActor<AProjectile>(
+	const auto Projectile = GetWorld()->SpawnActor<AProjectile>(
 		ProjectileClass ,
 		ProjectileSpawnPoint->GetComponentLocation(),
 		ProjectileSpawnPoint->GetComponentRotation());
@@ -51,5 +51,12 @@ void ABasePawn::Fire()
 
 void ABasePawn::HandleDestruction()
 {
-	// TODO: Visual/Sound Effects
+	if (DeathParticles)
+		UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticles, GetActorLocation(), GetActorRotation());
+
+	if (DeathSound)
+		UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation(),GetActorRotation());
+	
+	if (DeathCameraShakeClass)
+		GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(DeathCameraShakeClass);
 }
