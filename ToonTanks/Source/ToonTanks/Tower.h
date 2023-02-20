@@ -18,7 +18,7 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
-	void HandleDestruction();
+	virtual void HandleDestruction() override;
 	
 protected:
 
